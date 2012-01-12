@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindSharp", "MindSharp\MindSharp.csproj", "{AFA4B022-CDD8-4BAD-9EA4-B88357942DFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PandaTest", "PandaTest\PandaTest.csproj", "{65BF517B-10B2-4CB2-B99B-86D2A9951477}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs17
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MindSharp\\MindSharp.csproj
+		SccProjectName1 = MindSharp
+		SccLocalPath1 = MindSharp
+		SccProjectUniqueName2 = PandaTest\\PandaTest.csproj
+		SccProjectName2 = PandaTest
+		SccLocalPath2 = PandaTest
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFA4B022-CDD8-4BAD-9EA4-B88357942DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA4B022-CDD8-4BAD-9EA4-B88357942DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA4B022-CDD8-4BAD-9EA4-B88357942DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA4B022-CDD8-4BAD-9EA4-B88357942DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BF517B-10B2-4CB2-B99B-86D2A9951477}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
