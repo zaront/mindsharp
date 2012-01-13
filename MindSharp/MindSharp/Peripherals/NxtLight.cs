@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using GHIElectronics.NETMF.Hardware;
 
-namespace MindSharp
+namespace MindSharp.Peripherals
 {
     public class NxtLight
     {
