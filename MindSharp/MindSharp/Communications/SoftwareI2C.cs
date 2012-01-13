@@ -11,65 +11,70 @@ using System.Threading;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using MSH = Microsoft.SPOT.Hardware;
+using System.Collections;
 
-namespace MindSharp
+namespace MindSharp.Communications
 {
-    public class TimeOutException : ApplicationException
-    {
-        public TimeOutException()
-            : base("Timeout Error")
-        {
-        }
-
-        public TimeOutException(string message)
-            : base(message)
-        {
-        }
-    }
-
-    public class SoftwareI2C : IDisposable
+    public class SoftwareI2C : II2C, IDisposable
     {
 
-        public void ScanI2CDevices()
-        {
-            var t = new Microsoft.SPOT.Hardware.I2CDevice.I2CTransaction[2];
-            var regaddr = new byte[] { 0x00 };
-            var data = new byte[8];
+		public I2CDeviceInfo[] ScanAll()
+		{
+			return ScanBus(null);
+		}
 
-            t[0] = Microsoft.SPOT.Hardware.I2CDevice.CreateWriteTransaction(regaddr);
-            t[1] = Microsoft.SPOT.Hardware.I2CDevice.CreateReadTransaction(data);
+		public I2CDeviceInfo[] Scan(string deviceName)
+		{
+			return ScanBus(deviceName);
+		}
 
-            Debug.Print("Scanning Software Bus for devices...\r\n");
+		I2CDeviceInfo[] ScanBus(string deviceName)
+		{
+			var t = new I2CDevice.I2CTransaction[2];
+			var regaddr = new byte[] { 0x00 };
+			var data = new byte[8];
 
-            for (ushort i = 1; i < 128; i++)
-            {
-                int s;
-                s = Execute(i, new Microsoft.SPOT.Hardware.I2CDevice.I2CTransaction[1] { Microsoft.SPOT.Hardware.I2CDevice.CreateReadTransaction(new byte[1]) });
+			t[0] = I2CDevice.CreateWriteTransaction(regaddr);
+			t[1] = I2CDevice.CreateReadTransaction(data);
 
-                if (s == 1)
-                {
-                    regaddr[0] = 0x00;
+			ArrayList devices = new ArrayList();
+			for (ushort i = 1; i < 128; i++)
+			{
+				int s;
+				s = Execute(i, new I2CDevice.I2CTransaction[1] { I2CDevice.CreateReadTransaction(new byte[1]) });
 
-                    Execute(i, t);
+				if (s == 1)
+				{
+					regaddr[0] = 0x00;
 
-                    string version = ToString(data);
+					Execute(i, t);
 
-                    regaddr[0] = 0x08;
-                    Execute(i, t);
-                    string vendor = ToString(data);
+					string version = ToString(data);
 
-                    regaddr[0] = 0x10;
-                    Execute(i, t);
-                    string dev = ToString(data);
+					regaddr[0] = 0x08;
+					Execute(i, t);
+					string vendor = ToString(data);
 
-                    Debug.Print("Found at: 0x" + i.ToString());
-                    Debug.Print(" Version: " + version);
-                    Debug.Print(" Vendor : " + vendor);
-                    Debug.Print(" Device : " + dev);
-                    Debug.Print("");
-                }
-            }
-        }
+					regaddr[0] = 0x10;
+					Execute(i, t);
+					string dev = ToString(data);
+
+					//add device to list
+					if (deviceName == null || deviceName == dev)
+					{
+						devices.Add(new I2CDeviceInfo()
+						{
+							Address = i,
+							Version = version,
+							Vendor = vendor,
+							Device = dev
+						});
+					}
+				}
+			}
+
+			return devices.ToArray(typeof(I2CDeviceInfo)) as I2CDeviceInfo[];
+		}
 
         private string ToString(byte[] data)
         {
@@ -455,6 +460,20 @@ namespace MindSharp
         {
             SCL.Dispose();
             SDA.Dispose();
+        }
+    }
+
+
+    public class TimeOutException : ApplicationException
+    {
+        public TimeOutException()
+            : base("Timeout Error")
+        {
+        }
+
+        public TimeOutException(string message)
+            : base(message)
+        {
         }
     }
 }

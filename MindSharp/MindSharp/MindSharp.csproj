@@ -34,16 +34,22 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Communications\I2CDeviceInfo.cs" />
+    <Compile Include="Communications\I2CExecuteException.cs" />
+    <Compile Include="Communications\II2C.cs" />
     <Compile Include="MotorPlug.cs" />
     <Compile Include="NxShield.cs" />
-    <Compile Include="NxtLight.cs" />
-    <Compile Include="NxtMotor.cs" />
+    <Compile Include="OnboardButtons.cs" />
+    <Compile Include="Peripherals\MissingPeripheralException.cs" />
+    <Compile Include="Peripherals\NxtLight.cs" />
+    <Compile Include="Peripherals\NxtMotor.cs" />
+    <Compile Include="Peripherals\NxtUltrasonic.cs" />
     <Compile Include="OnboardLeds.cs" />
     <Compile Include="PinMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PspNx.cs" />
+    <Compile Include="Peripherals\PspNx.cs" />
     <Compile Include="SensorPlug.cs" />
-    <Compile Include="SoftwareI2C.cs" />
+    <Compile Include="Communications\SoftwareI2C.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GHIElectronics.NETMF.Hardware, Version=4.1.7.0, Culture=neutral, processorArchitecture=MSIL" />
@@ -51,7 +57,5 @@
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="NxShieldApi.csproj" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
