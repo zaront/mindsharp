@@ -7,42 +7,28 @@ namespace MindSharp
 {
     public abstract class PinMap
     {
-        public byte BankA_Address { get; protected set; }
-        public byte BankB_Address { get; protected set; }
+		public virtual byte BankA_Address { get { return 0x03; /*documented as 0x06*/ } }
+		public virtual byte BankB_Address { get { return 0x04; /*documented as 0x08*/ } }
 
-        public Cpu.Pin Motor_Clock { get; protected set; }
-        public Cpu.Pin Motor_Data { get; protected set; }
+		public abstract Cpu.Pin BAS1_Clock { get; }
+		public abstract Cpu.Pin BAS1_Data { get; }
+		public abstract AnalogIn.Pin BAS1_Data_Analog { get; }
 
-        public Cpu.Pin BAS1_Clock { get; protected set; }
-        public Cpu.Pin BAS1_Data { get; protected set; }
-        public AnalogIn.Pin BAS1_Data_Analog { get; protected set; }
+		public abstract Cpu.Pin BAS2_Clock { get; }
+		public abstract Cpu.Pin BAS2_Data { get; }
+		public abstract AnalogIn.Pin BAS2_Data_Analog { get; }
 
-        public Cpu.Pin BAS2_Clock { get; protected set; }
-        public Cpu.Pin BAS2_Data { get; protected set; }
-        public AnalogIn.Pin BAS2_Data_Analog { get; protected set; }
+		public abstract Cpu.Pin BBS1_Clock { get; }
+		public abstract Cpu.Pin BBS1_Data { get; }
+		public abstract AnalogIn.Pin BBS1_Data_Analog { get; }
 
-        public Cpu.Pin BBS1_Clock { get; protected set; }
-        public Cpu.Pin BBS1_Data { get; protected set; }
-        public AnalogIn.Pin BBS1_Data_Analog { get; protected set; }
+		public abstract Cpu.Pin BBS2_Clock { get; }
+		public abstract Cpu.Pin BBS2_Data { get; }
+		public abstract AnalogIn.Pin BBS2_Data_Analog { get; }
 
-        public Cpu.Pin BBS2_Clock { get; protected set; }
-        public Cpu.Pin BBS2_Data { get; protected set; }
-        public AnalogIn.Pin BBS2_Data_Analog { get; protected set; }
-
-        public Cpu.Pin LeftBtn_RedLed { get; protected set; }
-        public Cpu.Pin RightBtn_BlueLed { get; protected set; }
-        public Cpu.Pin GoBtn_GreenLed { get; protected set; }
-
-        public PinMap()
-        {
-            //defaults
-            BankA_Address = 0x03; //documented as 0x06;
-            BankB_Address = 0x04; //documented as 0x08;
-
-            SetupPinMap();
-        }
-
-        protected abstract void SetupPinMap();
+		public abstract Cpu.Pin LeftBtn_RedLed { get; }
+		public abstract Cpu.Pin RightBtn_BlueLed { get; }
+		public abstract Cpu.Pin GoBtn_GreenLed { get; }
 
         public Cpu.Pin GetDataPin(SensorPlug plug)
         {
