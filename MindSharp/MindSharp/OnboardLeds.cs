@@ -20,6 +20,7 @@ namespace MindSharp
             _redLedPort = new OutputPort((Cpu.Pin)shield.PinMap.LeftBtn_RedLed, true);
             _greenLedPort = new OutputPort((Cpu.Pin)shield.PinMap.GoBtn_GreenLed, true);
             _blueLedPort = new OutputPort((Cpu.Pin)shield.PinMap.RightBtn_BlueLed, true);
+
             _redLed = false;
             _greenLed = false;
             _blueLed = false;

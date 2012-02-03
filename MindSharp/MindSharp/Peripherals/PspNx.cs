@@ -8,7 +8,7 @@ namespace MindSharp.Peripherals
     public class PspNx
     {
 
-        II2C _i2c;
+        II2c _i2c;
 		ushort _address;
 
         public PspNx(NxShield shield, SensorPlug plug)
@@ -23,7 +23,7 @@ namespace MindSharp.Peripherals
         }
 
 
-        void ReadPort(II2C i2c, ushort address, byte port, ref byte[] result, int timeout = 100)
+        void ReadPort(II2c i2c, ushort address, byte port, ref byte[] result, int timeout = 100)
         {
             var portTransaction = new I2CDevice.I2CTransaction[2];
             portTransaction[0] = I2CDevice.CreateWriteTransaction(new byte[1] { port });
@@ -33,7 +33,7 @@ namespace MindSharp.Peripherals
 			var size = i2c.Execute(address, portTransaction, timeout);
 
             if (size != (result.Length + 1))
-                throw new I2CExecuteException(size);
+                throw new I2cExecuteException(size);
         }
 
         public bool UpdateButtonState(PspState state)
@@ -43,7 +43,7 @@ namespace MindSharp.Peripherals
             {
                 ReadPort(_i2c, _address, 0x42, ref data, 1000);
             }
-            catch (I2CExecuteException ex)
+            catch (I2cExecuteException ex)
             {
                 if (ex.SizeTranferred != 0)
                     throw;

@@ -19,10 +19,34 @@ namespace PandaTest
 
             var shield = new NxShield(new PandaPinMap());
 
-			PSControllerTest(shield);
+			//BatteryTest(shield);
+
+			//PSControllerTest(shield);
+			UltrasonicTest(shield);
             //FlashLights(shield);
             //I2CTest(shield);
+
+			Debug.Print("All Tests Done");
         }
+
+		private static void BatteryTest(NxShield shield)
+		{
+			Debug.Print("Begin Voltage Test");
+			for (int i = 0; i < 10; i++)
+			{
+				var voltage = shield.GetBatteryVoltage();
+				Debug.Print("Battery Voltage: " + voltage.ToString());
+				Debug.Assert(voltage > 0, "Failed to read voltage");
+			}
+			Debug.Print("Voltage Test Successful");
+		}
+
+		private static void UltrasonicTest(NxShield shield)
+		{
+			//setup
+			NxtUltrasonic ultrasonic = new NxtUltrasonic(shield, SensorPlug.BAS2);
+
+		}
 
 		private static void PSControllerTest(NxShield shield)
 		{
